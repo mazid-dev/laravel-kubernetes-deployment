@@ -1,4 +1,5 @@
 Laravel Kubernetes Deployment - Docker Setup
+
 This project demonstrates a production-ready Laravel 11 application containerized with Docker, featuring a multi-stage build and automated health checks for Kubernetes deployment.
 
 🚀 1. Application Features
