@@ -7,11 +7,13 @@ Custom Route: / returns "Laravel Kubernetes Deployment Test".
 
 Health Check: /health endpoint for monitoring (returns HTTP 200).
 
-PHP
+
 // Health check implementation in routes/web.php
 Route::get('/health', function () {
     return response()->json(['status' => 'ok'], 200);
 });
+
+
 🐳 2. Docker Architecture
 We use a Multi-stage Build to keep the final production image lightweight (~180MB) and secure.
 
@@ -41,7 +43,7 @@ Image URL: https://hub.docker.com/r/mazidhossain/laravel-app
 🧪 4. Local Testing
 Run the container locally to verify everything is working:
 
-Bash
+
 docker run -d \
   --name laravel-test \
   --publish 8080:8080 \
