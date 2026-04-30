@@ -3,9 +3,9 @@
 **This repository contains a full-scale deployment of a Laravel 11 application on a self-managed Kubernetes cluster using Kubeadm, Docker, and Helm.**
 
 ## 📌 Project Overview 
-  App: Laravel 11 (PHP 8.3-FPM + Nginx)
-  Cluster: Kubeadm (1 Control-plane, 2 Worker nodes)
-  CNI: Calico
+- App: Laravel 11 (PHP 8.3-FPM + Nginx)
+- Cluster: Kubeadm (1 Control-plane, 2 Worker nodes)
+  -CNI: Calico
   Ingress: Nginx Ingress Controller
   Registry: Docker Hub - mazidhossain/laravel-app
 
