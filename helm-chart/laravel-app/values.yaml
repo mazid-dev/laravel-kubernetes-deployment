@@ -1,0 +1,35 @@
+replicaCount: 2
+
+image:
+  repository: mazidhossain/laravel-app
+  tag: v1.0.1
+  pullPolicy: IfNotPresent
+
+namespace: laravel
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: true
+  className: nginx
+  host: laravel-test.local
+
+persistence:
+  size: 1Gi
+
+configmap:
+  APP_ENV: production
+  APP_DEBUG: "false"
+
+secret:
+  APP_KEY: "base64:LG2Tv3nNQbzKIMKutFRAZq3K5pLL3BdqwMOy/X89jQY="
+
+resources:
+  requests:
+    cpu: 250m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
