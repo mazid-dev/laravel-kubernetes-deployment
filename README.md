@@ -109,11 +109,11 @@ Map the host laravel-test.local to your cluster's Ingress IP in /etc/hosts:
 **Nginx Error:** Check logs with kubectl logs <pod_name> -c nginx -n laravel.
 
 ## Proof of Working (Screenshots Summary):
-✅ Nodes are Ready (v1.30.14)
-✅ Pods are Running (2 replicas)
-✅ Ingress mapped to laravel-test.local
-✅ Docker Image pushed and tested locally on port 8080.
-
+- Cluster Status: Nodes are in Ready state (Kubernetes v1.30.14).
+- High Availability: Pods are running with 2 replicas in the laravel namespace.
+- External Access: Ingress is successfully mapped to laravel-test.local.
+- Docker Image: Image built, pushed to Docker Hub, and verified locally on port 8080.
+- Health Check: /health endpoint verified and returning JSON status ok.
 
 
 ### 📸 Verification Proofs
