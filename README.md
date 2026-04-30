@@ -115,4 +115,22 @@ Map the host laravel-test.local to your cluster's Ingress IP in /etc/hosts:
 ✅ Docker Image pushed and tested locally on port 8080.
 
 
+
+### 📸 Verification Proofs
+
+
+#### 1. Cluster Nodes Status (`kubectl get nodes -o wide`)
+![Nodes Status](./screenshots/nodes.jpg)
+
+#### 2. All Running Pods (`kubectl get pods -n laravel`)
+![Pods Status](./screenshots/pods.jpg)
+
+#### 3. App Health & Docker Verification (Local Test & /health)
+![Health Check](./screenshots/health.jpg)
+
+#### 4. Ingress Configuration (`kubectl get ingress -n laravel`)
+![Ingress Status](./screenshots/ingress.jpg)
+
+
+
 **Developed by Md Mazid Hossain**
