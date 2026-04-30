@@ -14,11 +14,32 @@ spec:
         app: {{ .Release.Name }}
     spec:
       securityContext:
-        runAsUser: 1000
         fsGroup: 1000
+
+      initContainers:
+      - name: fix-permissions
+        image: busybox:latest
+        command:
+        - sh
+        - -c
+        - |
+          mkdir -p /var/www/html/storage/logs
+          mkdir -p /var/www/html/storage/framework/sessions
+          mkdir -p /var/www/html/storage/framework/views
+          mkdir -p /var/www/html/storage/framework/cache
+          mkdir -p /var/www/html/bootstrap/cache
+
+          # পারমিশন ফিক্স করা
+          chown -R 1000:1000 /var/www/html/storage /var/www/html/bootstrap/cache
+          chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
+        volumeMounts:
+        - name: storage-volume
+          mountPath: /var/www/html/storage
+
       containers:
       - name: laravel
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: Always
         ports:
         - containerPort: 8080
         envFrom:
@@ -29,16 +50,13 @@ spec:
         volumeMounts:
         - name: storage-volume
           mountPath: /var/www/html/storage
-        livenessProbe:
+        startupProbe:
           httpGet:
-            path: /health
+            path: /
             port: 8080
-          initialDelaySeconds: 30
-        readinessProbe:
-          httpGet:
-            path: /health
-            port: 8080
-          initialDelaySeconds: 30
+          failureThreshold: 30
+          periodSeconds: 10
+
       volumes:
       - name: storage-volume
         persistentVolumeClaim:
