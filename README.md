@@ -1,4 +1,4 @@
-# Laravel Kubernetes Deployment # 
+# Laravel Kubernetes Deployment (Kubeadm + Docker + Helm) # 
 
 ## This repository contains a full-scale deployment of a Laravel 11 application on a self-managed Kubernetes cluster using Kubeadm, Docker, and Helm.
 
