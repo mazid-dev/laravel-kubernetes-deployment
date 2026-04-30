@@ -3,18 +3,18 @@
 **This repository contains a full-scale deployment of a Laravel 11 application on a self-managed Kubernetes cluster using Kubeadm, Docker, and Helm.**
 
 ## 📌 Project Overview
--App: Laravel 11 (PHP 8.3-FPM + Nginx)
--Cluster: Kubeadm (1 Control-plane, 2 Worker nodes)
--CNI: Calico
--Ingress: Nginx Ingress Controller
--Registry: Docker Hub - mazidhossain/laravel-app
+ App: Laravel 11 (PHP 8.3-FPM + Nginx)
+ Cluster: Kubeadm (1 Control-plane, 2 Worker nodes)
+ CNI: Calico
+ Ingress: Nginx Ingress Controller
+ Registry: Docker Hub - mazidhossain/laravel-app
 
 ## 🛠 1.Laravel Application & Docker Setup
 ### Application Features
 -Route /: Displays "Laravel Kubernetes Deployment Test".
 -Health Check /health: Returns {"status": "ok"} for Kubernetes Liveness and Readiness probes.
 
-##Docker Image Architecture
+## Docker Image Architecture
 I used a multi-stage build to ensure the image is lightweight and secure.
 -Base: PHP 8.3-FPM Alpine.
 -Server: Nginx + Supervisor (to manage both PHP and Nginx processes).
