@@ -1,18 +1,18 @@
 # Laravel Kubernetes Deployment # 
 
-**This repository contains a full-scale deployment of a Laravel 11 application on a self-managed Kubernetes cluster using Kubeadm, Docker, and Helm.**
+## This repository contains a full-scale deployment of a Laravel 11 application on a self-managed Kubernetes cluster using Kubeadm, Docker, and Helm.
 
 ## 📌 Project Overview 
 - App: Laravel 11 (PHP 8.3-FPM + Nginx)
 - Cluster: Kubeadm (1 Control-plane, 2 Worker nodes)
-  -CNI: Calico
-  Ingress: Nginx Ingress Controller
-  Registry: Docker Hub - mazidhossain/laravel-app
+- CNI: Calico
+- Ingress: Nginx Ingress Controller
+- Registry: Docker Hub - mazidhossain/laravel-app
 
 ## 🛠 1.Laravel Application & Docker Setup
 ### Application Features
- Route /: Displays "Laravel Kubernetes Deployment Test".
- Health Check /health: Returns {"status": "ok"} for Kubernetes Liveness and Readiness probes.
+- Route /: Displays "Laravel Kubernetes Deployment Test".
+- Health Check /health: Returns {"status": "ok"} for Kubernetes Liveness and Readiness probes.
 
 ## Docker Image Architecture
 I used a multi-stage build to ensure the image is lightweight and secure.
@@ -37,12 +37,12 @@ cd laravel-app
 
 ## 🏗 2. Kubernetes Cluster (kubeadm) 
 The cluster is built on AWS EC2 instances with Ubuntu 22.04.
- Cluster Details:
- Kubernetes Version: v1.30.14
- Nodes:
- 1 Master (Control-plane)
- 2 Worker nodes
- Status: All nodes are in Ready state (Verified with kubectl get nodes).
+- Cluster Details:
+- Kubernetes Version: v1.30.14
+- Nodes:
+- 1 Master (Control-plane)
+- 2 Worker nodes
+- Status: All nodes are in Ready state (Verified with kubectl get nodes).
 
 ## Setup Commands (Summary):
 1.Initialize Master: sudo kubeadm init --pod-network-cidr=192.168.0.0/16
@@ -51,14 +51,14 @@ The cluster is built on AWS EC2 instances with Ubuntu 22.04.
 
 ## ☸️ 3. Helm Chart Deployment
 The application is deployed using a custom Helm chart located in helm-chart/laravel-app.
- Resources Managed by Helm:
- Deployment: 2 Replicas, Multi-stage image, Probes.
- ConfigMap: For APP_ENV and application configurations.
- Secret: For APP_KEY (Base64 encoded).
- Service: ClusterIP for internal routing.
- Ingress: Configured for laravel-test.local.
- PVC: Persistent storage for Laravel logs and cache.
- Init Container: Used to fix storage permissions (chown -R www-data) before the app starts.
+- Resources Managed by Helm:
+- Deployment: 2 Replicas, Multi-stage image, Probes.
+- ConfigMap: For APP_ENV and application configurations.
+- Secret: For APP_KEY (Base64 encoded).
+- Service: ClusterIP for internal routing.
+- Ingress: Configured for laravel-test.local.
+- PVC: Persistent storage for Laravel logs and cache.
+- Init Container: Used to fix storage permissions (chown -R www-data) before the app starts.
 
 ### Deployment Commands:
 ## Create namespace
@@ -95,8 +95,8 @@ Map the host laravel-test.local to your cluster's Ingress IP in /etc/hosts:
 '<INGRESS_IP> laravel-test.local'
 
 ## 2. Test Endpoints
- Home: http://laravel-test.local (Expect: "Laravel Kubernetes Deployment Test")
- Health: curl http://laravel-test.local/health (Expect: {"status":"ok"})
+- Home: http://laravel-test.local (Expect: "Laravel Kubernetes Deployment Test")
+- Health: curl http://laravel-test.local/health (Expect: {"status":"ok"})
 
 ## 3. CLI Verification
 'kubectl get nodes'
